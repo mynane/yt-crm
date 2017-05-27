@@ -13,14 +13,17 @@ transform-async-to-generator
 
 transform-do-expressions
 用于支持JSX书写 if else 语句
-render() {
-    return (
-        <div className='myComponent'>
-        {do {
-          if(color === 'blue') { <BlueComponent/>; }
-          if(color === 'red') { <RedComponent/>; }
-          if(color === 'green') { <GreenComponent/>; }
-        }}
-    </div>
-    )
-}
+
+<code>
+    render() {
+        return (
+            <div className='myComponent'>
+            {do {
+                if(color === 'blue') { <BlueComponent/>; }
+                if(color === 'red') { <RedComponent/>; }
+                if(color === 'green') { <GreenComponent/>; }
+            }}
+        </div>
+        )
+    }
+</code>
