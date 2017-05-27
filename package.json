@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./node_modules/freed-spa/tool/server.js",
+    "start": "node ./tool/server.js",
     "build": "cross-env NODE_ENV=production webpack --config=./webpack.config.js"
   },
   "dependencies": {
