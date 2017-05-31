@@ -1,5 +1,16 @@
-[
-  {"name": "topic 1"},
-  {"name": "topic 2"},
-  {"name": "topic 3"}
-]
+{
+    "meta": {
+        "code": 200
+    },
+    "data": [
+        {
+            "name": "topic 1"
+        },
+        {
+            "name": "topic 2"
+        },
+        {
+            "name": "topic 3"
+        }
+    ]
+}

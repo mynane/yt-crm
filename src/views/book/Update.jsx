@@ -15,7 +15,7 @@ import { bookDetailAction } from '../../actions/book';
     state => ({
         book: state.toJS().book,
     }),
-    dispatch => bindActionCreators({bookDetailAction}, dispatch)
+    dispatch => bindActionCreators({ bookDetailAction }, dispatch)
 )
 class App extends PureComponent {
     constructor(props) {
@@ -51,7 +51,8 @@ class App extends PureComponent {
     render() {
         const { match, book } = this.props;
 
-console.log('render book detail..');
+console.log('render book update..');
+
         return(
             <div>
                 <h3>Book Detail</h3>

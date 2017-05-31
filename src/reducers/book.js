@@ -10,6 +10,7 @@ import ActionType from '../actions/ActionType';
 const initState = Immutable.fromJS({
     list: [],
     detail: {},
+    visible: false,
 });
 
 export default function (state = initState, action) {
@@ -19,6 +20,12 @@ export default function (state = initState, action) {
 
         case ActionType.RECEIVE_BOOK_DETAIL:
             return state.set('detail', action.payload);
+
+        case ActionType.SET_BOOK_DETAIL_SHOW:
+            return state.set('visible', true);
+
+        case ActionType.SET_BOOK_DETAIL_HIDE:
+            return state.set('visible', false);
 
         default:
             return state;

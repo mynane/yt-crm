@@ -30,6 +30,7 @@ class App extends Component {
 
     render() {
         const { user } = this.props;
+
 console.log('render home');
         return (
             <div>

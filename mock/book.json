@@ -1,16 +1,19 @@
 {
-  "books": [
-    {
-      "id": 1,
-      "name": "aaaa"
+    "meta": {
+        "code": 200
     },
-    {
-      "id": 2,
-      "name": "bbb"
-    },
-    {
-      "id": 231,
-      "name": "ccc"
-    }
-  ]
+    "data": [
+        {
+            "id": 1,
+            "name": "aaaa"
+        },
+        {
+            "id": 2,
+            "name": "bbb"
+        },
+        {
+            "id": 231,
+            "name": "ccc"
+        }
+    ]
 }

@@ -1,11 +1,19 @@
-.link-goback {
-  display: inline-block;
-  background: #eee;
-  border: 1px solid #ccc;
-  color: #666;
-  padding: 5px 10px;
-  
-  :hover {
-    color: #000000;
-  }
+#root {
+    height: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: rgba(150, 150, 150, 0.5);
 }

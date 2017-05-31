@@ -1,6 +1,11 @@
 {
-  "name": "denglingbo",
-  "age": "12",
-  "level": 5,
-  "city": "Chengdu"
+    "meta": {
+        "code": 200
+    },
+    "data": {
+        "name": "denglingbo",
+        "age": "12",
+        "level": 5,
+        "city": "Chengdu"
+    }
 }

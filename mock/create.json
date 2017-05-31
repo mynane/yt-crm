@@ -1,3 +1,8 @@
 {
-  "name": "my topic name "
+    "meta": {
+        "code": 200
+    },
+    "data": {
+        "name": "my topic name "
+    }
 }

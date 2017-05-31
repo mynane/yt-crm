@@ -16,7 +16,7 @@ export const topicAction = () => dispatch => (
     new Promise((resolve, reject) => {
         fetchTopic()
             .then(res => {
-                dispatch(receiveTopicAction(res.data));
+                dispatch(receiveTopicAction(res));
             })
             .catch(err => {
                 reject(err);
@@ -36,7 +36,7 @@ export const createTopicAction = (params) => dispatch => (
                 // mock 一下
                 const data = {
                     id: params.name,
-                    name: res.data.name + ' Mock Me -> ' + params.name,
+                    name: res.name + ' Mock Me -> ' + params.name,
                 }
 
                 dispatch(receiveCreateTopic(data));

@@ -8,16 +8,30 @@ var LocalServer = require('freed-spa/tool/server');
 
 var ROOT_PATH = path.resolve(__dirname);
 
-var host = 'localhost';
+const __TEST__ = process.env.NODE_ENV === 'test';
+
+var host = '0.0.0.0';
+
+// http://172.30.40.222:8080/fc-web/sys/user/sysLogin.htm?login=admin&password=123456
+
+var rules = [];
+
+// 联调环境
+if (__TEST__) {
+    rules = [{
+        pattern: /https?:\/\/[\w\.]*(?::\d+)?\/(.+).htm/,
+        responder: 'http://172.30.40.222:8080/$1.htm'
+    }];
+} else {
+    rules = [{
+        pattern: /https?:\/\/[\w\.]*(?::\d+)?\/.+\/(.+)/,
+        responder: path.join(ROOT_PATH, '../mock/') + '$1.json'
+    }];
+}
 
 var proxyConfig = {
     port: 9999,
-    rules: [
-        {
-            pattern: /https?:\/\/[\w\.]*(?::\d+)?\/.+\/(.+)/,
-            responder: path.join(ROOT_PATH, '../mock/') + '$1.json'
-        }
-    ]
+    rules: rules
 };
 
 var devConfig = {
@@ -25,6 +39,7 @@ var devConfig = {
     port: 8899,
     proxy: {
         '/api': `http://${host}:${proxyConfig.port}`,
+        '/fc-web': `http://${host}:${proxyConfig.port}`,
     }
 };
 

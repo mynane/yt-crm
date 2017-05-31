@@ -17,6 +17,10 @@ const __PRO__ = process.env.NODE_ENV === 'production';
 
 var webpackConfig = makeWebpack({
     entry: {
+        vendor: [
+            'react',
+            'react-dom',
+        ],
         index: './src/index',
     },
     output: {
@@ -47,6 +51,20 @@ var webpackConfig = makeWebpack({
     module: {
         rules: [
             {
+                // 图片加载器
+                test: /\.(png|jpg|gif|ttf|eot|svg|woff(2)?)(\?[=a-z0-9]+)?$/,
+                loader: 'url-loader?limit=10000&name=images/[hash].[ext]'
+            },
+            {
+                test: /\.css/,
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: [
+                        'css-loader',
+                    ],
+                })
+            },
+            {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
@@ -56,6 +74,21 @@ var webpackConfig = makeWebpack({
                         'sass-loader',
                     ],
                 })
+            },
+            {
+                test: /\.less$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: [
+                        'css-loader',
+                        'autoprefixer-loader',
+                        'less-loader',
+                    ],
+                })
+            },
+            {
+                test: /\.json$/,
+                loader: 'json-loader'
             }
         ]
     }
