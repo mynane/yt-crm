@@ -19,8 +19,8 @@ var rules = [];
 // 联调环境
 if (__TEST__) {
     rules = [{
-        pattern: /https?:\/\/[\w\.]*(?::\d+)?\/(.+).htm/,
-        responder: 'http://172.30.40.222:8080/$1.htm'
+        pattern: /https?:\/\/[\w\.]*(?::\d+)?\/(.+).htm(.+)/,
+        responder: 'http://172.30.40.222:8080/$1.htm$2'
     }];
 } else {
     rules = [{

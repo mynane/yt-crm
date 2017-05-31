@@ -56,8 +56,9 @@ axios.interceptors.response.use(
 );
 
 export const send = (url, params, type) => {
-
-    return axios[type](url, params);
+    return axios[type](url, {
+        params
+    });
 }
 
 export const get = (url, params) => send(url, params, 'get');
