@@ -10,27 +10,16 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router';
-import siderAction from '../../actions/sider';
 import { getPath, getKeyByPathname, getSelectedByPathname } from '../../util/route';
 import './siderMenu.scss';
 
 const SubMenu = Menu.SubMenu;
 
-@connect(
-    state => ({
-        sider: state.toJS().sider.data,
-    }),
-    dispatch => bindActionCreators({ siderAction }, dispatch)
-)
 class SiderMenu extends Component {
     constructor(props) {
         super(props);
 
         this.handleClick = ::this.handleClick;
-    }
-
-    componentWillMount() {
-        this.props.siderAction();
     }
 
     handleClick(e) {

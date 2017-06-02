@@ -31,7 +31,6 @@ class App extends Component {
     render() {
         const { user } = this.props;
 
-console.log('render home');
         return (
             <div>
                 <h4>Homeeeee Hello {user.data.name}</h4>

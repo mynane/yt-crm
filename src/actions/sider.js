@@ -17,7 +17,6 @@ export default () => dispatch => (
     new Promise((resolve, reject) => {
         fetchSider()
             .then(res => {
-                console.log(res)
                 dispatch(receive(res));
             })
             .catch(err => {

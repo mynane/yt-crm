@@ -4,19 +4,26 @@
  */
 
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router';
 import { Layout, Icon } from 'antd';
 import SiderMenu from '../siderMenu/SiderMenu';
 import Breadcrumb from '../breadcrumb/Breadcrumb';
-import userAction from '../../actions/user';
+import siderAction from '../../actions/sider';
+import AuthRoute from '../../Route';
 import './layout.scss';
 
 const { Header, Content, Sider } = Layout;
 
-class AppLayout extends PureComponent {
+@connect(
+    state => ({
+        user: state.toJS().user,
+        sider: state.toJS().sider.data,
+    }),
+    dispatch => bindActionCreators({ siderAction }, dispatch)
+)
+class AuthLayout extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -27,6 +34,10 @@ class AppLayout extends PureComponent {
         this.handleCollapseChange = ::this.handleCollapseChange;
     }
 
+    componentWillMount() {
+        this.props.siderAction();
+    }
+
     handleCollapseChange() {
         this.setState({
             collapsed: !this.state.collapsed,
@@ -35,6 +46,11 @@ class AppLayout extends PureComponent {
 
     render() {
         const { collapsed } = this.state;
+        const { user, sider } = this.props;
+
+        if (!user.isAuth) {
+            return null;
+        }
 
         return (
             <Layout>
@@ -48,6 +64,7 @@ class AppLayout extends PureComponent {
                     >
                         <div className="ant-layout-menu">
                             <SiderMenu
+                                sider={sider}
                                 collapsed={collapsed}
                             />
                         </div>
@@ -70,7 +87,7 @@ class AppLayout extends PureComponent {
 
                         {/* 内容容器 */}
                         <div className="content-main">
-                            {this.props.children}
+                            <AuthRoute sider={sider} />
                         </div>
                     </Content>
                 </Layout>
@@ -79,12 +96,10 @@ class AppLayout extends PureComponent {
     }
 }
 
-AppLayout.propTypes = {
+AuthLayout.propTypes = {}
 
-}
-
-AppLayout.defaultProps = {
+AuthLayout.defaultProps = {
     breadcrumb: 'Breadcrumb',
 }
 
-export default withRouter(AppLayout);
+export default withRouter(AuthLayout);

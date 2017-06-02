@@ -6,9 +6,10 @@
  */
 
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
+import Bundle from 'freed-spa/lib/bundle';
 import { getMatchRoute }  from './util/route';
-import routes  from './routes';
+import routes from './routes';
 
 /**
  * 获取 route
@@ -16,30 +17,36 @@ import routes  from './routes';
  * @constructor
  */
 const GetRoutes = (item) => {
-    return item.component();
+    return <item.component />;
 }
 
 export default (props) => {
-    let menus = [];
+    const sider = props.sider;
 
     // 当前权限可用 Routes
-    const usableRoutes = [routes[0]];
+    const usableRoutes = [];
 
-    // 获取所有可跳转的菜单，主菜单无 Link
-    props.siderList.map(item => {
-        if (item.submenu) {
-            menus = menus.concat(item.submenu);
-        }
-    });
+    if (sider && sider.length > 0) {
+        usableRoutes.push(routes[0]);
 
-    // 所有的子菜单
-    menus.map(item => {
-        const matchRoute = getMatchRoute(item.key);
+        let menus = [];
 
-        if (matchRoute && matchRoute.component) {
-            usableRoutes.push(matchRoute);
-        }
-    });
+        // 获取所有可跳转的菜单，主菜单无 Link
+        sider.map(item => {
+            if (item.submenu) {
+                menus = menus.concat(item.submenu);
+            }
+        });
+
+        // 所有的子菜单
+        menus.map(item => {
+            const matchRoute = getMatchRoute(item.key);
+
+            if (matchRoute && matchRoute.component) {
+                usableRoutes.push(matchRoute);
+            }
+        });
+    }
 
     return (
         <Switch>

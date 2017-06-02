@@ -1,7 +1,5 @@
 {
-    "meta": {
-        "code": 200
-    },
+    "code": 200,
     "data": [
         {
             "name": "topic 1"

@@ -8,10 +8,14 @@
 // import { get, post } from 'freed-spa/lib/util/request';
 import { get, post } from './util/request';
 
-export const fetchUser = () => get('/sys/user/sysLogin.htm', {
-    login: 'admin',
-    password: '123456'
-});
+// export const fetchUser = () => get('/sys/user/sysLogin.htm', {
+//     login: 'admin',
+//     password: '123456'
+// });
+
+export const login = () => get('/login');
+
+export const fetchUser = () => get('/user');
 
 export const fetchSider = () => get('/sider');
 

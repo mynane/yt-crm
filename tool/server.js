@@ -12,8 +12,6 @@ const __TEST__ = process.env.NODE_ENV === 'test';
 
 var host = '0.0.0.0';
 
-// http://172.30.40.222:8080/fc-web/sys/user/sysLogin.htm?login=admin&password=123456
-
 var rules = [];
 
 // 联调环境
@@ -24,7 +22,7 @@ if (__TEST__) {
     }];
 } else {
     rules = [{
-        pattern: /https?:\/\/[\w\.]*(?::\d+)?\/.+\/(.+)/,
+        pattern: /https?:\/\/[\w\.]*(?::\d+)?\/.+\/(\w+)*/,
         responder: path.join(ROOT_PATH, '../mock/') + '$1.json'
     }];
 }

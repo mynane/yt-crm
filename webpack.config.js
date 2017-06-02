@@ -13,7 +13,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var makeWebpack = require('freed-spa/make-webpack.config');
 
 var ROOT_PATH = path.resolve(__dirname);
-const __PRO__ = process.env.NODE_ENV === 'production';
+const __PRO__ = process.env.NODE_ENV === 'pro';
 
 var webpackConfig = makeWebpack({
     entry: {
@@ -54,41 +54,6 @@ var webpackConfig = makeWebpack({
                 // 图片加载器
                 test: /\.(png|jpg|gif|ttf|eot|svg|woff(2)?)(\?[=a-z0-9]+)?$/,
                 loader: 'url-loader?limit=10000&name=images/[hash].[ext]'
-            },
-            {
-                test: /\.css/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: [
-                        'css-loader',
-                    ],
-                })
-            },
-            {
-                test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: [
-                        'css-loader',
-                        'autoprefixer-loader',
-                        'sass-loader',
-                    ],
-                })
-            },
-            {
-                test: /\.less$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: [
-                        'css-loader',
-                        'autoprefixer-loader',
-                        'less-loader',
-                    ],
-                })
-            },
-            {
-                test: /\.json$/,
-                loader: 'json-loader'
             }
         ]
     }

@@ -1,6 +1,6 @@
 {
     "code": 200,
     "data": {
-        "name": "my topic name "
+        "success": true
     }
 }
